@@ -5,30 +5,28 @@ from communication import Communication, send_message
 from time import sleep
 from os import _exit
 
-def historia_barnabe(text, chat_id, group_title, com):
-    reply = "Sou um matuto sofrido"
-    text = text.lower()
-    if (
-        (('conte' in text) and ('vida' in text)) or
-        (('quem' in text) and ('barnab' in text))
-    ):
-        send_message(reply, chat_id, com)
-        return
+keywords_speaches = [[[u"vida"], ["Sou um matuto sofrido"]],
+                     [[u'foda', u'dific', u'difíc', u'sofri', u'sofre', u'sofrê'], ["Quando eu era um matutinho tive q trabaia pra compra meu primeiro computador."]],
+                     [[u'$', u'dólar', u'dolar', u'dollar'], ['Aaahh U$1,00 é tudo que eu queria.']],
+                     [[u'balde'], ['Me chamaram?']],
+                     [[u'merda'], ['Alguém precisando de um balde?']],
+                     [[u'chulé', u'chule'], ['Não fui eu.']]
+                    ]
 
-def sofrencia_barnabe(text, chat_id, group_title, com):
-    speaches = ["Quando eu era um matutinho tive q trabaia pra compra meu primeiro computador."]
-    VIDA_DIFICIL = [u'foda', u'dific', u'difíc', u'sofri', u'sofre', u'sofrê']
+def process_msg(text, chat_id, group_title, com):
     text = text.lower()
-    for i in VIDA_DIFICIL:
-        if i in text:
-            index = randint(0,len(speaches) - 1)
-            send_message(speaches[index], chat_id, com)
-            break
+    for ks in keywords_speaches:
+        for keyword in ks[0]:
+            if keyword in text:
+                index = 0
+                if len(ks[1]) > 1:
+                    index = randint(0, len(ks[1]) - 1)
+                send_message(ks[1][index], chat_id, com)
+                break
 
 if __name__ == '__main__':
     com = Communication()
-    com.on_receive_msg(historia_barnabe)
-    com.on_receive_msg(sofrencia_barnabe)
+    com.on_receive_msg(process_msg)
     com.start()
     try:
         while True:
