@@ -32,7 +32,9 @@ single_keywords_speaches = [
                     [[u'gord'], [u'Vou fazer uma bariátrica']],
                     [[u'tela'], [u'Screen security?']],
                     [[u'tamanho'], [u'Acho que é GG']],
-                    [[u'pobre', u'fudido'], [u'Também sou destitute']]
+                    [[u'pobre', u'fudido'], [u'Também sou destitute']],
+                    [[u'mst'], [u'Sou presidente do MST, movimento sem trabalho']],
+                    [[u'lula', u'pt'], [u'Lula é meu senhor e pinga não me faltará']]
                    ]
 
 many_keywords_speaches = [[], []]
