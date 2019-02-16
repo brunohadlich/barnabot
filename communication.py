@@ -3,7 +3,7 @@
 import urllib, json, requests, time, random, configs, threading
 
 def send_message(text, chat_id, com):
-    requests.get(com.url + "sendMessage?text={}&chat_id={}".format(urllib.quote_plus(text), chat_id)).content.decode("utf8")
+    requests.get(com.url + "sendMessage?text={}&chat_id={}".format(urllib.quote_plus(text.encode('utf8')), chat_id)).content.decode("utf8")
 
 class Communication:
     def __init__(self, configurations=None):
