@@ -35,7 +35,8 @@ single_keywords_speaches = [
                     [[u'tamanho'], [u'Acho que é GG']],
                     [[u'pobre', u'fudido'], [u'Também sou destitute']],
                     [[u'mst'], [u'Sou presidente do MST, movimento sem trabalho']],
-                    [[u'lula', u'pt'], [u'Lula é meu senhor e pinga não me faltará']]
+                    [[u'lula', u'pt'], [u'Lula é meu senhor e pinga não me faltará']],
+                    [[u'esquecido', u'esqueci'], [u'Pô David toto mundo ja tinha equesido dizo']]
                    ]
 
 many_keywords_speaches = [[], []]
