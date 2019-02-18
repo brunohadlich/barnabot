@@ -58,7 +58,7 @@ class Communication:
                 text = ""
             update_id = updates["result"][0]["update_id"]
 
-        return (text, chat_id, group_title, update_id)
+        return (message, text, chat_id, group_title, update_id)
 
     def on_receive_msg(self, func):
         self.msg_proc_list.append(func)
@@ -66,11 +66,11 @@ class Communication:
     def event_loop(self):
         update_id = None
         while True:
-            text, chat_id, group_title, update_id = self.get_last_chat_id_and_text(self.get_updates(update_id))
+            message, text, chat_id, group_title, update_id = self.get_last_chat_id_and_text(self.get_updates(update_id))
             if update_id and (text != None) and (len(text) > 0):
                 update_id = update_id + 1
                 for f in self.msg_proc_list:
-                    f(text, chat_id, group_title, self)
+                    f(message, text, chat_id, group_title, self)
 
     def run_scheduled_msgs(self):
         ELAPSE_TIME=60
