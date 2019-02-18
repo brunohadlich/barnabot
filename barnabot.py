@@ -40,7 +40,21 @@ single_keywords_speaches = [
 
 many_keywords_speaches = [[], []]
 
-def process_msg(text, chat_id, group_title, com):
+LAST_DAVID_HAIR_CALL = None
+
+def passar_mao_cabelo_david(message, chat_id, com):
+    global LAST_DAVID_HAIR_CALL
+    if 'from' in message and 'first_name' in message['from'] and 'david' == message['from']['first_name'].lower():
+        now = datetime.datetime.now()
+        if LAST_DAVID_HAIR_CALL:
+            print((now - LAST_DAVID_HAIR_CALL).seconds)
+        if LAST_DAVID_HAIR_CALL == None or (now - LAST_DAVID_HAIR_CALL).seconds > 18000:#5 hours
+                send_message('Oi David posso passar a mão no seu cabelo?', chat_id, com)
+                LAST_DAVID_HAIR_CALL = now
+
+def process_msg(message, text, chat_id, group_title, com):
+    passar_mao_cabelo_david(message, chat_id, com)
+
     text = text.lower()
     for ks in single_keywords_speaches:
         for keyword in ks[0]:
