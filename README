@@ -2,10 +2,10 @@
 Barnabot é um bot matuto para Telegram que teve uma vida extremamente difícil e sofrida.
 
 Para utilizar o Barnabot é necessário atualizar o arquivo balde.json com o token do mesmo.
-Novas respostas podem ser adicionadas ao arquivo barnabot.py, algumas funções podem ser usadas como exemplo sofrencia_sofrida e
-historia_barnabe, basicamente a função recebe o texto que alguém escreveu e o Barnabot leu, o chat_id que é o identificador da
+Novas respostas podem ser adicionadas ao arquivo barnabot.py, algumas funções podem ser usadas como por exemplo "sofrencia_sofrida" e
+"historia_barnabe", basicamente a função recebe o texto que alguém escreveu e o Barnabot leu, o chat_id que é o identificador da
 conversa, group_title que vem preenchido com o título do grupo caso a conversa tenha partido de um grupo, este argumento vem vazio
 quando se trata de uma conversa privada. Após definida uma nova função para manipular conversas ela deve ser adicionada na lista de
 eventos através da chamada com.on_receive_msg.
 
-Atualmente Barnabot opera com Python 2, para pôlo pra trabalhar apenas execute "python barnabot.py".
+Atualmente Barnabot opera com Python 3, para pôlo pra trabalhar recomendamos que você crie uma virtualenv e instale as dependencias do arquivo "requirements.txt" (pip install -r requirements.txt) após isto apenas execute "python barnabot.py".
