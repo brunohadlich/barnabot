@@ -4,6 +4,7 @@ from random import randint
 from communication import Communication, send_message
 from time import sleep
 from os import _exit
+import datetime, pytz
 
 single_keywords_speaches = [
                     [[u"vida"], [u"Sou um matuto sofrido"]],
@@ -53,6 +54,37 @@ def process_msg(text, chat_id, group_title, com):
 if __name__ == '__main__':
     com = Communication()
     com.on_receive_msg(process_msg)
+
+    t = datetime.datetime.now(tz=pytz.utc)
+    #t = t.astimezone(pytz.timezone('America/Sao_Paulo'))
+    t = t.astimezone(pytz.timezone('US/Pacific'))
+    t = t.replace(hour=9, minute=40)
+    com.schedule_every_day_msg(t, 'Ora dos peão mostrar o que fizeram pro capataz', -286666955)
+
+    t = t.astimezone(pytz.timezone('America/Sao_Paulo'))
+    t = t.replace(hour=7, minute=55)
+    com.schedule_every_day_msg(t, 'Mais um dia de labuta', -286666955)
+
+    t = t.astimezone(pytz.timezone('America/Sao_Paulo'))
+    t = t.replace(hour=11, minute=30)
+    com.schedule_every_day_msg(t, 'Bora cume?', -286666955)
+
+    t = t.astimezone(pytz.timezone('America/Sao_Paulo'))
+    t = t.replace(hour=11, minute=47)
+    com.schedule_every_day_msg(t, 'Ai que fome!!!! Minha bariátrica que não chega', -286666955)
+
+    t = t.astimezone(pytz.timezone('America/Sao_Paulo'))
+    t = t.replace(hour=11, minute=33)
+    com.schedule_every_day_msg(t, 'Hi Nestor', -286666955)
+
+    t = t.astimezone(pytz.timezone('America/Sao_Paulo'))
+    t = t.replace(hour=11, minute=56)
+    com.schedule_every_day_msg(t, 'Uma coquinha agora ia bem', -286666955)
+
+    t = t.astimezone(pytz.timezone('America/Sao_Paulo'))
+    t = t.replace(hour=10, minute=30)
+    com.schedule_every_day_msg(t, 'Alguém pode me ajuda cum angular javascript? Sou Linux Software Engineer', -286666955)
+
     com.start()
     try:
         while True:

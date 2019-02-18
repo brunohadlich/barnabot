@@ -1,13 +1,15 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-import urllib, json, requests, time, random, configs, threading
+import urllib, json, requests, time, random, configs, threading, datetime, pytz
 
 def send_message(text, chat_id, com):
-    requests.get(com.url + "sendMessage?text={}&chat_id={}".format(urllib.quote_plus(text.encode('utf8')), chat_id)).content.decode("utf8")
+    requests.get(com.url + "sendMessage?text={}&chat_id={}".format(urllib.quote_plus(text), chat_id)).content.decode("utf8")
 
 class Communication:
     def __init__(self, configurations=None):
         self.msg_proc_list = []
+        self.scheduled_msgs = []
+        self.scheduled_every_day_msgs = []
         self.threads = []
         self.load_configs(configurations)
 
@@ -34,6 +36,7 @@ class Communication:
         url = self.url + "getUpdates?timeout={}".format(str(self.req_updates_timeout_sec))
         if offset:
             url += "&offset={}".format(offset)
+        print("get_updates {}".format(url))
         return self.__get_json_from_url(url)
 
     def get_last_chat_id_and_text(self, updates):
@@ -64,12 +67,59 @@ class Communication:
         update_id = None
         while True:
             text, chat_id, group_title, update_id = self.get_last_chat_id_and_text(self.get_updates(update_id))
-            if update_id and (text <> None) and (len(text) > 0):
+            if update_id and (text != None) and (len(text) > 0):
                 update_id = update_id + 1
                 for f in self.msg_proc_list:
                     f(text, chat_id, group_title, self)
+
+    def run_scheduled_msgs(self):
+        ELAPSE_TIME=60
+        while True:
+            for sch in self.scheduled_msgs:
+                sch_time = sch[0]
+                msg = sch[1]
+                chat_id = sch[2]
+                now = datetime.datetime.now(tz=pytz.utc)
+                now = now.astimezone(pytz.timezone(sch_time.tzinfo.zone))
+                missing_time = (sch_time - now).seconds
+                print('Missing {} seconds to send msg "{}" for chat_id {}.'.format(str(missing_time), msg, str(chat_id)))
+                if missing_time <= ELAPSE_TIME:
+                    send_message(msg, chat_id, self)
+            time.sleep(ELAPSE_TIME)
+
+    def run_scheduled_every_day_msgs(self):
+        ELAPSE_TIME=60
+        while True:
+            for sch in self.scheduled_every_day_msgs:
+                sch_time = sch[0]
+                msg = sch[1]
+                chat_id = sch[2]
+                now = datetime.datetime.now(tz=pytz.utc)
+                now = now.astimezone(pytz.timezone(sch_time.tzinfo.zone))
+                sch_time = sch_time.replace(year=now.year, month=now.month, day=now.day)
+                missing_time = (sch_time - now).seconds
+                print('Missing {} seconds to send msg "{}" for chat_id {}.'.format(str(missing_time), msg, str(chat_id)))
+                if (missing_time <= ELAPSE_TIME) and (now.weekday() < 5):
+                    send_message(msg, chat_id, self)
+            time.sleep(ELAPSE_TIME)
 
     def start(self):
         event_loop_thread = threading.Thread(target=self.event_loop)
         self.threads.append(event_loop_thread)
         event_loop_thread.start()
+
+        scheduled_msgs_thread = threading.Thread(target=self.run_scheduled_msgs)
+        self.threads.append(scheduled_msgs_thread)
+        scheduled_msgs_thread.start()
+
+        scheduled_every_day_msgs_thread = threading.Thread(target=self.run_scheduled_every_day_msgs)
+        self.threads.append(scheduled_every_day_msgs_thread)
+        scheduled_every_day_msgs_thread.start()
+
+    #date_time is an argument that must have its timezone set to UTC for sake of correct execution
+    def schedule_msg(self, date_time, msg, chat_id):
+       self.scheduled_msgs.append((date_time, msg, chat_id))
+
+    #date_time is an argument that must have its timezone set to UTC for sake of correct execution
+    def schedule_every_day_msg(self, date_time, msg, chat_id):
+       self.scheduled_every_day_msgs.append((date_time, msg, chat_id))
