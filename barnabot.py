@@ -42,6 +42,7 @@ single_keywords_speaches = [
 many_keywords_speaches = [[], []]
 
 LAST_DAVID_HAIR_CALL = None
+LAST_BAMBAM_DIETA_CALL = None
 
 def passar_mao_cabelo_david(message, chat_id, com):
     global LAST_DAVID_HAIR_CALL
@@ -53,8 +54,19 @@ def passar_mao_cabelo_david(message, chat_id, com):
                 send_message('Oi David posso passar a mão no seu cabelo?', chat_id, com)
                 LAST_DAVID_HAIR_CALL = now
 
+def dieta_bambam(message, chat_id, com):
+    global LAST_BAMBAM_DIETA_CALL
+    if 'from' in message and 'first_name' in message['from'] and 'Guilherme' == message['from']['first_name'].lower():
+        now = datetime.datetime.now()
+        if LAST_BAMBAM_DIETA_CALL:
+            print((now - LAST_BAMBAM_DIETA_CALL).seconds)
+        if LAST_BAMBAM_DIETA_CALL == None or (now - LAST_BAMBAM_DIETA_CALL).seconds > 18000:#5 hours
+                send_message('O Bambam me passa a tua dieta ai!', chat_id, com)
+                LAST_BAMBAM_DIETA_CALL = now
+
 def process_msg(message, text, chat_id, group_title, com):
     passar_mao_cabelo_david(message, chat_id, com)
+    dieta_bambam(message, chat_id, com)
 
     text = text.lower()
     for ks in single_keywords_speaches:
@@ -73,8 +85,16 @@ if __name__ == '__main__':
     t = datetime.datetime.now(tz=pytz.utc)
     #t = t.astimezone(pytz.timezone('America/Sao_Paulo'))
     t = t.astimezone(pytz.timezone('US/Pacific'))
-    t = t.replace(hour=9, minute=40)
-    com.schedule_every_day_msg(t, 'Ora dos peão mostrar o que fizeram pro capataz', -286666955)
+    t = t.replace(hour=9, minute=43)
+    com.schedule_every_day_msg(t, 'Ora dos peão mostrar trabalho', -286666955)
+
+    t = t.astimezone(pytz.timezone('US/Pacific'))
+    t = t.replace(hour=10, minute=0)
+    com.schedule_every_day_msg(t, 'Boraaa hora do show!!! Birl!!! birl!!!', -286666955)
+
+    t = t.astimezone(pytz.timezone('US/Pacific'))
+    t = t.replace(hour=10, minute=10)
+    com.schedule_every_day_msg(t, 'Como vai o meeting? Muita fuleragem?', -286666955)
 
     t = t.astimezone(pytz.timezone('America/Sao_Paulo'))
     t = t.replace(hour=7, minute=55)
@@ -95,6 +115,14 @@ if __name__ == '__main__':
     t = t.astimezone(pytz.timezone('America/Sao_Paulo'))
     t = t.replace(hour=11, minute=56)
     com.schedule_every_day_msg(t, 'Uma coquinha agora ia bem', -286666955)
+
+    t = t.astimezone(pytz.timezone('America/Sao_Paulo'))
+    t = t.replace(hour=15, minute=00)
+    com.schedule_every_day_msg(t, 'Passando pra lembrar que documentação é dispensável', -286666955)
+
+    t = t.astimezone(pytz.timezone('America/Sao_Paulo'))
+    t = t.replace(hour=16, minute=00)
+    com.schedule_every_day_msg(t, 'Se eu consigo fazer um firewall em PL/SQL você também é capaz', -286666955)
 
     t = t.astimezone(pytz.timezone('America/Sao_Paulo'))
     t = t.replace(hour=10, minute=30)

@@ -40,6 +40,7 @@ class Communication:
         return self.__get_json_from_url(url)
 
     def get_last_chat_id_and_text(self, updates):
+        message = None
         text = None
         chat_id = None
         update_id = None
