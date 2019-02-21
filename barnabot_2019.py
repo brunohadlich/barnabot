@@ -47,6 +47,10 @@ single_keywords_speaches = [
     [[u'salsicha', u'criptografia'], [u'Trata-se de um conjunto de regras que visa codificar a informação de forma que só o emissor e o receptor consiga decifrá-la']],
     [[u'firewall'], [u'Firewall é uma solução de segurança baseada em hardware ou software (mais comum) que, a partir de um conjunto de regras ou instruções, analisa o tráfego de rede para determinar quais operações de transmissão ou recepção de dados podem ser executadas.']],
     [[u'oi', u'olá', u'ola'], [u'Oi eu sou o Barnabot_2019 um bot desenvolvido para promover um ambiente saúdavel e feliz neste grupo']],
+    [[u'genco', u'gencopet', u'genco boy'], [u'Iniciamos nossas atividades em 1973 com projeto de produzir tintas, vernizes e adesivos (dai o nome “GENeral COatings” - revestimentos gerais, em inglês), o que logo se provou impraticável. Para continuar com a empresa em operação, valemo-nos de uma matéria prima usada em tintas e formulamos nosso primeiro produto comercial: GENPOOL-X, Algicida e Algistático para piscinas. Naquela época o único produto utilizado para controlar algas em piscinas era o sulfato de cobre.']],
+    [[u't800', u'T800', u't-800', u't 800'], [u'T-800 foi enviado pela Skynet para 1984 com a intenção de matar Sarah Connor, antes dessa dar à luz o futuro líder da resistência humana contra as máquinas, John Connor. Mas os humanos invadiram a instalação da máquina do tempo e ao verem que um robô já tinha sido enviado, enviaram um soldado, Kyle Reese, para proteger Sarah.']],
+    [[u'india', u'indiano', u'indianos'], [u'Relativo ou pertencente à Índia, país asiático.']],
+    [[u'ramid'], [u'Do you wat to try my cookie cookie? only 99 cents plus tax (Michael do the office sobre Ramid)']]
 ]
 
 LAST_DAVID_HAIR_CALL = None
