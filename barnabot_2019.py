@@ -62,43 +62,43 @@ def send_message_command(message, text, chat_id, com):
         None
     return False
 
-def passar_mao_cabelo_david(message, chat_id, com):
-    global LAST_DAVID_HAIR_CALL
-    if 'from' in message and 'first_name' in message['from'] and 'david' == message['from']['first_name'].lower():
-        now = datetime.datetime.now()
-        if LAST_DAVID_HAIR_CALL == None or (now - LAST_DAVID_HAIR_CALL).seconds > 18000:#5 hours
-                send_message('Oi David posso passar a mão no seu cabelo?', chat_id, com)
-                LAST_DAVID_HAIR_CALL = now
-                return True
-    return False
+#def passar_mao_cabelo_david(message, chat_id, com):
+#    global LAST_DAVID_HAIR_CALL
+#    if 'from' in message and 'first_name' in message['from'] and 'david' == message['from']['first_name'].lower():
+#        now = datetime.datetime.now()
+#        if LAST_DAVID_HAIR_CALL == None or (now - LAST_DAVID_HAIR_CALL).seconds > 18000:#5 hours
+#                send_message('Oi David posso passar a mão no seu cabelo?', chat_id, com)
+#                LAST_DAVID_HAIR_CALL = now
+#                return True
+#    return False
 
-def dieta_bambam(message, chat_id, com):
-    global LAST_DIETA_BAMBAM_CALL
-    if 'from' in message and 'first_name' in message['from'] and 'guilherme' == message['from']['first_name'].lower():
-        now = datetime.datetime.now()
-        if LAST_DIETA_BAMBAM_CALL == None or (now - LAST_DIETA_BAMBAM_CALL).seconds > 18000:#5 hours
-                send_message('O Bambam me passa a tua dieta ai!', chat_id, com)
-                LAST_DIETA_BAMBAM_CALL = now
-                return True
-    return False
+#def dieta_bambam(message, chat_id, com):
+#    global LAST_DIETA_BAMBAM_CALL
+#    if 'from' in message and 'first_name' in message['from'] and 'guilherme' == message['from']['first_name'].lower():
+#        now = datetime.datetime.now()
+#        if LAST_DIETA_BAMBAM_CALL == None or (now - LAST_DIETA_BAMBAM_CALL).seconds > 18000:#5 hours
+#                send_message('O Bambam me passa a tua dieta ai!', chat_id, com)
+#                LAST_DIETA_BAMBAM_CALL = now
+#                return True
+#    return False
 
-def josias_api(message, chat_id, com):
-    global LAST_JOSIAS_API_CALL
-    if 'from' in message and 'first_name' in message['from'] and 'josias' == message['from']['first_name'].lower():
-        now = datetime.datetime.now()
-        if LAST_JOSIAS_API_CALL == None or (now - LAST_JOSIAS_API_CALL).seconds > 18000:#5 hours
-                messages = ['Josias já acabou a API?', 'Josias quer ajuda pra criar uma VM?']
-                send_message(messages[randint(0, len(messages) - 1)], chat_id, com)
-                LAST_JOSIAS_API_CALL = now
-                return True
-    return False
+#def josias_api(message, chat_id, com):
+#    global LAST_JOSIAS_API_CALL
+#    if 'from' in message and 'first_name' in message['from'] and 'josias' == message['from']['first_name'].lower():
+#        now = datetime.datetime.now()
+#        if LAST_JOSIAS_API_CALL == None or (now - LAST_JOSIAS_API_CALL).seconds > 18000:#5 hours
+#                messages = ['Josias já acabou a API?', 'Josias quer ajuda pra criar uma VM?']
+#                send_message(messages[randint(0, len(messages) - 1)], chat_id, com)
+#                LAST_JOSIAS_API_CALL = now
+#                return True
+#    return False
 
 def process_msg(message, text, chat_id, group_title, com):
-    if (send_message_command(message, text, chat_id, com) or
-        passar_mao_cabelo_david(message, chat_id, com) or
-        dieta_bambam(message, chat_id, com) or
-        josias_api(message, chat_id, com)):
-        return
+#    if (send_message_command(message, text, chat_id, com) or
+#        passar_mao_cabelo_david(message, chat_id, com) or
+#        dieta_bambam(message, chat_id, com) or
+#        josias_api(message, chat_id, com)):
+#        return
 
     text = text.lower()
     for ks in single_keywords_speaches:
@@ -114,30 +114,30 @@ if __name__ == '__main__':
     com = Communication()
     com.on_receive_msg(process_msg)
 
-    t = datetime.datetime.now(tz=pytz.utc)
-    t = t.astimezone(pytz.timezone('US/Pacific'))
-    t = t.replace(hour=9, minute=55)
-    com.schedule_every_day_msg(t, 'Ora do mitim peçoal', GROUP_CHAT_ID)
+#    t = datetime.datetime.now(tz=pytz.utc)
+#    t = t.astimezone(pytz.timezone('US/Pacific'))
+#    t = t.replace(hour=9, minute=55)
+#    com.schedule_every_day_msg(t, 'Ora do mitim peçoal', GROUP_CHAT_ID)
 
-    t = t.astimezone(pytz.timezone('US/Pacific'))
-    t = t.replace(hour=10, minute=10)
-    com.schedule_every_day_msg(t, 'Como vai o mitin? Muita fulerage?', GROUP_CHAT_ID)
+#    t = t.astimezone(pytz.timezone('US/Pacific'))
+#    t = t.replace(hour=10, minute=10)
+#    com.schedule_every_day_msg(t, 'Como vai o mitin? Muita fulerage?', GROUP_CHAT_ID)
 
-    t = t.astimezone(pytz.timezone('America/Sao_Paulo'))
-    t = t.replace(hour=7, minute=55)
-    com.schedule_every_day_msg(t, 'Mais um dia de labuta', GROUP_CHAT_ID)
+#    t = t.astimezone(pytz.timezone('America/Sao_Paulo'))
+#    t = t.replace(hour=7, minute=55)
+#    com.schedule_every_day_msg(t, 'Mais um dia de labuta', GROUP_CHAT_ID)
 
-    t = t.astimezone(pytz.timezone('America/Sao_Paulo'))
-    t = t.replace(hour=11, minute=30)
-    com.schedule_every_day_msg(t, 'Bora cume?', GROUP_CHAT_ID)
+#    t = t.astimezone(pytz.timezone('America/Sao_Paulo'))
+#    t = t.replace(hour=11, minute=30)
+#    com.schedule_every_day_msg(t, 'Bora cume?', GROUP_CHAT_ID)
 
-    t = t.astimezone(pytz.timezone('America/Sao_Paulo'))
-    t = t.replace(hour=11, minute=47)
-    com.schedule_every_day_msg(t, 'Ai que fome!!!! Minha bariátrica que não chega', GROUP_CHAT_ID)
+#    t = t.astimezone(pytz.timezone('America/Sao_Paulo'))
+#    t = t.replace(hour=11, minute=47)
+#    com.schedule_every_day_msg(t, 'Ai que fome!!!! Minha bariátrica que não chega', GROUP_CHAT_ID)
 
-    t = t.astimezone(pytz.timezone('America/Sao_Paulo'))
-    t = t.replace(hour=11, minute=56)
-    com.schedule_every_day_msg(t, 'Uma coquinha agora ia bem', GROUP_CHAT_ID)
+#    t = t.astimezone(pytz.timezone('America/Sao_Paulo'))
+#    t = t.replace(hour=11, minute=56)
+#    com.schedule_every_day_msg(t, 'Uma coquinha agora ia bem', GROUP_CHAT_ID)
 
     com.start()
     try:
