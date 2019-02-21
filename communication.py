@@ -3,7 +3,7 @@
 import urllib, json, requests, time, random, configs, threading, datetime, pytz
 
 def send_message(text, chat_id, com):
-    requests.get(com.url + "sendMessage?text={}&chat_id={}".format(urllib.parse.quote_plus(text), chat_id)).content.decode("utf8")
+    return requests.get(com.url + "sendMessage?text={}&chat_id={}".format(urllib.parse.quote_plus(text), chat_id)).content.decode("utf8")
 
 class Communication:
     def __init__(self, configurations=None):
@@ -47,16 +47,18 @@ class Communication:
         group_title = None
 
         if len(updates["result"]) > 0:
-            message = updates["result"][0]["message"]
-            #There are updates that notify the bot was added to a group, in
-            #this case the text is empty and we have to check it
-            if "text" in message:
-                text = message["text"]
-                chat_id = message["chat"]["id"]
-                if message["chat"]["type"] == "group":
-                    group_title =message["chat"]["title"]
-            else:
-                text = ""
+            print(updates["result"][0])
+            if 'message' in updates["result"][0]:
+                message = updates["result"][0]["message"]
+                #There are updates that notify the bot was added to a group, in
+                #this case the text is empty and we have to check it
+                if "text" in message:
+                    text = message["text"]
+                    chat_id = message["chat"]["id"]
+                    if message["chat"]["type"] == "group":
+                        group_title =message["chat"]["title"]
+                else:
+                    text = ""
             update_id = updates["result"][0]["update_id"]
 
         return (message, text, chat_id, group_title, update_id)
@@ -68,10 +70,11 @@ class Communication:
         update_id = None
         while True:
             message, text, chat_id, group_title, update_id = self.get_last_chat_id_and_text(self.get_updates(update_id))
-            if update_id and (text != None) and (len(text) > 0):
+            if update_id:
+                if (text != None) and (len(text) > 0):
+                    for f in self.msg_proc_list:
+                        f(message, text, chat_id, group_title, self)
                 update_id = update_id + 1
-                for f in self.msg_proc_list:
-                    f(message, text, chat_id, group_title, self)
 
     def run_scheduled_msgs(self):
         ELAPSE_TIME=60
