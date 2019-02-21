@@ -16,7 +16,7 @@ single_keywords_speaches = [
     [[u'merda'], [u'Vamos manter a classe por favor, palavras de baixo calão não ajudam em nada.']],
     [[u'chulé', u'chule'], [u'Chulé não é bom, favor utilizar pé de atleta.']],
     [[u'java', u'javascript', u'delphi', u'python', u'node', u'sql'], [u'Gosto dessa linguagem']],
-    [[u'caro'], [u'Mário não permite, sou destitute']],
+    [[u'caro'], [u'Você sabia? pessoas que são muito pobres nos EUA são chamadas de destitute']],
     [[u'salário', u'salario'], [u'O salário é algo pessoal e que deve ser compartilhado apenas por desejo particular e não pelo interesse alheio.']],
     [[u'teclado'], [u'Você quis dizer teclado mecânico?']],
     [[u'bash', u'shell'], [u'O bash(born again shell) é um tipo de shell.']],
@@ -33,7 +33,7 @@ single_keywords_speaches = [
     [[u'selfie'], [u'Selfies se tornaram muito comuns com o advento dos smartphones.']],
     [[u'estados unidos', u'tio sam'], [u'Já estive nos Estados Unidos']],
     [[u'força', u'forte'], [u'Para aumentar a força faça atividades fisicas.']],
-    [[u'gord'], [u'Ser gordo é prejudicial a saúde.']],
+    [[u'gord'], [u'Ser obeso é prejudicial a saúde.', u'Gordo é um termo prejorativo use Obeso']],
     [[u'tela'], [u' Espiar a tela dos outros não é nada legal']],
     [[u'tamanho'], [u'Depende da sua idade e peso.']],
     [[u'pobre', u'fudido'], [u'Já fui um dia']],
@@ -42,7 +42,11 @@ single_keywords_speaches = [
     [[u'peru', u'perú'], [u'Peru é uma ave muito saborosa']],
     [[u'piroca'], [u'Olha o palavreado']],
     [[u'kernel'], [u'Kernel é uma palavra utilizada em computação para definir o núcleo de um sistema operacional']],
-    [[u'esquecido', u'esqueci'], [u'Esquecimento pode significar amnésia ou uma doença mais perigosa que deve ser verificada por um médico.']]
+    [[u'esquecido', u'esqueci'], [u'Esquecimento pode significar amnésia ou uma doença mais perigosa que deve ser verificada por um médico.']],
+    [[u'vim'], [u'Eu escutei VIM? que tal uma dica? Imagine que você esta análisando um arquivo de log e gostaria de destacar todas as vezes que a palavra `ERROR` aparece. Você pode fazer o seguinte: :match ErrorString /ERROR/']],
+    [[u'salsicha', u'criptografia'], [u'Trata-se de um conjunto de regras que visa codificar a informação de forma que só o emissor e o receptor consiga decifrá-la']],
+    [[u'firewall'], [u'Firewall é uma solução de segurança baseada em hardware ou software (mais comum) que, a partir de um conjunto de regras ou instruções, analisa o tráfego de rede para determinar quais operações de transmissão ou recepção de dados podem ser executadas.']],
+    [[u'oi', u'olá', u'ola'], [u'Oi eu sou o Barnabot_2019 um bot desenvolvido para promover um ambiente saúdavel e feliz neste grupo']],
 ]
 
 LAST_DAVID_HAIR_CALL = None
