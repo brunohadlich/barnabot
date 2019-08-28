@@ -9,6 +9,7 @@ import datetime, pytz
 GROUP_CHAT_ID = -271497936
 
 single_keywords_speaches = [
+    [[u"indian"], [u"Acredito que se trata de um povo inteligente e dedicado em extrema ascenção que em poucas décadas provavelmente estará no top 3 países mais ricos do mundo."]],
     [[u"vida"], [u"Sou um matuto sofrido"]],
     [[u'foda', u'dific', u'difíc', u'sofri', u'sofre', u'sofrê'], [u"Quando eu era um matutinho tive q trabaia pra compra meu primeiro computador."]],
     [[u'$', u'dólar', u'dolar', u'dollar'], [u'Aaahh U$1,00 é tudo que eu queria.']],

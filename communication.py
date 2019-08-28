@@ -5,6 +5,15 @@ import urllib, json, requests, time, random, configs, threading, datetime, pytz
 def send_message(text, chat_id, com):
     return requests.get(com.url + "sendMessage?text={}&chat_id={}".format(urllib.parse.quote_plus(text), chat_id)).content.decode("utf8")
 
+def send_photo(text, chat_id, file_id, com):
+    #ret =  requests.get(com.url + "getFile?file_id={}".format(urllib.parse.quote_plus(file_id))).content.decode("utf8")
+    #ret = json.loads(ret)
+    #if ret['ok']:
+    #    content = requests.get(com.file_url + "{}".format(urllib.parse.quote_plus(ret['result']['file_path']))).content
+    #    print(len(content))
+    #    ret =  requests.get(com.url + "sendPhoto?chat_id={}&photo={}&caption={}".format(chat_id, file_id, urllib.parse.quote_plus(text))).content.decode("utf8")
+    ret =  requests.get(com.url + "sendPhoto?chat_id={}&photo={}&caption={}".format(chat_id, file_id, urllib.parse.quote_plus(text))).content.decode("utf8")
+
 class Communication:
     def __init__(self, configurations=None):
         self.msg_proc_list = []
@@ -25,8 +34,10 @@ class Communication:
         self.token = configurations["token"]
         self.req_updates_timeout_sec = configurations["req_updates_timeout_sec"]
         self.url = "https://api.telegram.org/bot{}/".format(configurations["token"])
+        self.file_url = "https://api.telegram.org/file/bot{}/".format(configurations["token"])
 
     def __get_url(self, url):
+        print('get url: {}', url)
         return requests.get(url).content.decode("utf8")
 
     def __get_json_from_url(self, url):
@@ -41,24 +52,24 @@ class Communication:
 
     def get_last_chat_id_and_text(self, updates):
         message = None
-        text = None
+        text = ""
         chat_id = None
         update_id = None
-        group_title = None
+        group_title = ""
 
-        if len(updates["result"]) > 0:
+        if 'result' in updates and len(updates["result"]) > 0:
             print(updates["result"][0])
             if 'message' in updates["result"][0]:
                 message = updates["result"][0]["message"]
+                chat_id = message["chat"]["id"]
+                if message["chat"]["type"] == "group":
+                    group_title =message["chat"]["title"]
                 #There are updates that notify the bot was added to a group, in
                 #this case the text is empty and we have to check it
                 if "text" in message:
                     text = message["text"]
-                    chat_id = message["chat"]["id"]
-                    if message["chat"]["type"] == "group":
-                        group_title =message["chat"]["title"]
-                else:
-                    text = ""
+                elif "caption" in message:
+                    text = message['caption']
             update_id = updates["result"][0]["update_id"]
 
         return (message, text, chat_id, group_title, update_id)
