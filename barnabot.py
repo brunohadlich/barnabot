@@ -42,12 +42,17 @@ single_keywords_speaches = [
     [[u'peru', u'perú'], [u'Eu queria dois perus, um pra comer e o outro pra ...']],
     [[u'piroca'], [u'Prefiro pau de selfie']],
     [[u'kernel'], [u'Marcos o kernel é escrito em Angular?']],
-    [[u'esquecido', u'esqueci'], [u'Pô David toto mundo ja tinha equesido dizo']]
+    [[u'genco'], [u'cloroquina', u'Acessem http://www.genco.com.br/ e conheçam nossa linha de algicidas.', u'Bati a meta e agora vou dobrá-la.', u'https://www.youtube.com/watch?v=e1BJDJIZ3hM&feature=emb_logo', u'https://www.youtube.com/watch?v=S8Z77AtlGFQ&feature=emb_logo']],
+    [[u'dudu', u'gigi'], [u'https://www.youtube.com/watch?v=5Q3zsH4nf2s&feature=emb_logo']],
+    [[u'cloro', u'piscina'], [u'Você conhece os produtos genco? Acesse https://www.genco.com.br e conheça nossa linha de podrutos']],
+    [[u'angola'], [u'Programei SQL e Angular na Angola']],
+    [[u'cesta'], [u'Eu prefiro cesta básica a ganhar um peru']],
+    [[u'shared', u'memory'], [u'shared memory usa ponteiro?', u'O kernel tem shared memory?']],
+    [[u'ponteiro'], [u'@mpdesouza', u'tem curso de ponteiro na udemy?']],
+    [[u'computador'], [u'Tive que trabaia pa compra meu primeiro coputador']]
 ]
 
-LAST_DAVID_HAIR_CALL = None
-LAST_DIETA_BAMBAM_CALL = None
-LAST_JOSIAS_API_CALL = None
+#LAST_DIETA_BAMBAM_CALL = None
 
 def send_message_command(message, text, chat_id, com):
     try:
@@ -62,16 +67,7 @@ def send_message_command(message, text, chat_id, com):
         None
     return False
 
-def passar_mao_cabelo_david(message, chat_id, com):
-    global LAST_DAVID_HAIR_CALL
-    if 'from' in message and 'first_name' in message['from'] and 'david' == message['from']['first_name'].lower():
-        now = datetime.datetime.now()
-        if LAST_DAVID_HAIR_CALL == None or (now - LAST_DAVID_HAIR_CALL).seconds > 18000:#5 hours
-                send_message('Oi David posso passar a mão no seu cabelo?', chat_id, com)
-                LAST_DAVID_HAIR_CALL = now
-                return True
-    return False
-
+"""
 def dieta_bambam(message, chat_id, com):
     global LAST_DIETA_BAMBAM_CALL
     if 'from' in message and 'first_name' in message['from'] and 'guilherme' == message['from']['first_name'].lower():
@@ -81,23 +77,11 @@ def dieta_bambam(message, chat_id, com):
                 LAST_DIETA_BAMBAM_CALL = now
                 return True
     return False
-
-def josias_api(message, chat_id, com):
-    global LAST_JOSIAS_API_CALL
-    if 'from' in message and 'first_name' in message['from'] and 'josias' == message['from']['first_name'].lower():
-        now = datetime.datetime.now()
-        if LAST_JOSIAS_API_CALL == None or (now - LAST_JOSIAS_API_CALL).seconds > 18000:#5 hours
-                messages = ['Josias já acabou a API?', 'Josias quer ajuda pra criar uma VM?']
-                send_message(messages[randint(0, len(messages) - 1)], chat_id, com)
-                LAST_JOSIAS_API_CALL = now
-                return True
-    return False
+"""
 
 def process_msg(message, text, chat_id, group_title, com):
-    if (send_message_command(message, text, chat_id, com) or
-        passar_mao_cabelo_david(message, chat_id, com) or
-        dieta_bambam(message, chat_id, com) or
-        josias_api(message, chat_id, com)):
+    if (send_message_command(message, text, chat_id, com)):
+        #dieta_bambam(message, chat_id, com)):
         return
 
     text = text.lower()
@@ -107,6 +91,7 @@ def process_msg(message, text, chat_id, group_title, com):
                 index = 0
                 if len(ks[1]) > 1:
                     index = randint(0, len(ks[1]) - 1)
+                print("enviando resposta {}".format(ks[1][index]))
                 send_message(ks[1][index], chat_id, com)
                 break
 
@@ -114,34 +99,20 @@ if __name__ == '__main__':
     com = Communication()
     com.on_receive_msg(process_msg)
 
+    """
     t = datetime.datetime.now(tz=pytz.utc)
     t = t.astimezone(pytz.timezone('US/Pacific'))
     t = t.replace(hour=9, minute=55)
-    com.schedule_every_day_msg(t, 'Ora do mitim peçoal', GROUP_CHAT_ID)
-
-    t = t.astimezone(pytz.timezone('US/Pacific'))
-    t = t.replace(hour=10, minute=10)
     com.schedule_every_day_msg(t, 'Como vai o mitin? Muita fulerage?', GROUP_CHAT_ID)
-
-    t = t.astimezone(pytz.timezone('America/Sao_Paulo'))
-    t = t.replace(hour=7, minute=55)
-    com.schedule_every_day_msg(t, 'Mais um dia de labuta', GROUP_CHAT_ID)
-
-    t = t.astimezone(pytz.timezone('America/Sao_Paulo'))
-    t = t.replace(hour=11, minute=30)
-    com.schedule_every_day_msg(t, 'Bora cume?', GROUP_CHAT_ID)
-
-    t = t.astimezone(pytz.timezone('America/Sao_Paulo'))
-    t = t.replace(hour=11, minute=47)
-    com.schedule_every_day_msg(t, 'Ai que fome!!!! Minha bariátrica que não chega', GROUP_CHAT_ID)
 
     t = t.astimezone(pytz.timezone('America/Sao_Paulo'))
     t = t.replace(hour=11, minute=56)
     com.schedule_every_day_msg(t, 'Uma coquinha agora ia bem', GROUP_CHAT_ID)
+    """
 
     com.start()
     try:
         while True:
-            sleep(1)
+            sleep(10)
     except KeyboardInterrupt:
         _exit(0)
