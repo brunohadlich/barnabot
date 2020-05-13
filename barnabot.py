@@ -48,8 +48,13 @@ single_keywords_speaches = [
     [[u'angola'], [u'Programei SQL e Angular na Angola']],
     [[u'cesta'], [u'Eu prefiro cesta básica a ganhar um peru']],
     [[u'shared', u'memory'], [u'shared memory usa ponteiro?', u'O kernel tem shared memory?']],
-    [[u'ponteiro'], [u'@mpdesouza', u'tem curso de ponteiro na udemy?']],
-    [[u'computador'], [u'Tive que trabaia pa compra meu primeiro coputador']]
+    [[u'ponteiro'], [u'@mpdesouza tem curso de ponteiro na udemy?', u'Edson, o que é um ponteiro???']],
+    [[u'computador'], [u'Tive que trabaia pa compra meu primeiro coputador']],
+    [[u'edson'], [u'Edson, me ajuda numas shared memory??']],
+    [[u'manager'], [u'ouvi um cross blowjob??']],
+    [[u'sogra'], [u'olha, agora eu virei amigo da minha sogra.']],
+    [[u'carro'], [u'é dificil manter um corola']],
+    [[u'russa'], [u'to fazendo roleta russa com as contas esse mes.']]
 ]
 
 #LAST_DIETA_BAMBAM_CALL = None
