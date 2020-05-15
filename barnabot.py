@@ -13,7 +13,7 @@ single_keywords_speaches = [
     [[u"vida"], [u"Sou um matuto sofrido"]],
     [[u'foda', u'dific', u'difíc', u'sofri', u'sofre', u'sofrê'], [u"Quando eu era um matutinho tive q trabaia pra compra meu primeiro computador."]],
     [[u'$', u'dólar', u'dolar', u'dollar'], [u'Aaahh U$1,00 é tudo que eu queria.']],
-    [[u'balde'], [u'Me chamaram?']],
+    [[u'balde'], [u'Me chamaram?', u'mas eu prefiro um balde de merda à isso']],
     [[u'merda'], [u'Alguém precisando de um balde?']],
     [[u'chulé', u'chule'], [u'Não fui eu']],
     [[u'linguagem', u'linguagens', u'java', u'javascript', u'delphi', u'python', u'node', u'sql'], [u'Eu programo em AngularJS']],
@@ -54,7 +54,11 @@ single_keywords_speaches = [
     [[u'manager'], [u'ouvi um cross blowjob??']],
     [[u'sogra'], [u'olha, agora eu virei amigo da minha sogra.']],
     [[u'carro'], [u'é dificil manter um corola']],
-    [[u'russa'], [u'to fazendo roleta russa com as contas esse mes.']]
+    [[u'russa'], [u'to fazendo roleta russa com as contas esse mes.']],
+    [[u'datastore'], [u'@bruno_hadlich, me ajuda a criar uma pagina nesse sistema embarcado']],
+    [[u'ligacao', u'nestor'], [u'lembrei que tenho que ligar pro Nestor']],
+    [[u'vagas'], [u'to conversando com 3 recrutadores', u'@mpdesouza, tem uma vaginha na SUSE?']],
+    [[u'aniversário'], [u'opa, quem paga a cuca?', u'Já são 6 anos de uma empresa ai?', u'Vai ter M&Ms?']]
 ]
 
 #LAST_DIETA_BAMBAM_CALL = None

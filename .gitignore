@@ -1,0 +1,6 @@
+.*.swp
+.git
+.svn*
+.vscode
+__pycache__
+*.pyc
