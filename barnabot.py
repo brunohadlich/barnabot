@@ -83,7 +83,7 @@ def evolve_command(message, text, chat_id, com):
         system("cd ~/git/barnabot && cp balde.json balde.json.tmp && git fetch --all && git reset --hard origin/master && mv balde.json.tmp balde.json")
         msgs = ["Barnabot digievoluiu para Matutoromon", "Matutoromon digievoluiu para War Matutoromon", "Barnabot digievoluiu para tamagotchi"]
         send_message(msgs[randint(0, len(msgs) - 1)], chat_id, com)
-            system("cd ~/git/barnabot && python3 barnabot.py&")
+        system("cd ~/git/barnabot && python3 barnabot.py&")
         _exit(0)
     return False
 
