@@ -1,6 +1,6 @@
 .*.swp
 .git
-.svn.
+.svn*
 .vscode
 __pycache__
 *.pyc
