@@ -4,6 +4,7 @@ from random import randint
 from communication import Communication, send_message
 from time import sleep
 from os import _exit
+from os import system
 import datetime, pytz
 
 GROUP_CHAT_ID = -271497936
@@ -49,12 +50,13 @@ single_keywords_speaches = [
     [[u'cesta'], [u'Eu prefiro cesta básica a ganhar um peru']],
     [[u'shared', u'memory'], [u'shared memory usa ponteiro?', u'O kernel tem shared memory?']],
     [[u'ponteiro'], [u'@mpdesouza tem curso de ponteiro na udemy?', u'Edson, o que é um ponteiro???']],
-    [[u'computador'], [u'Tive que trabaia pa compra meu primeiro coputador']],
+    [[u'computador'], [u'Tive que trabaia pa compra meu primeiro coputador', u'bora jogar um medal of honor?']],
     [[u'edson'], [u'Edson, me ajuda numas shared memory??']],
     [[u'manager'], [u'ouvi um cross blowjob??']],
     [[u'sogra'], [u'olha, agora eu virei amigo da minha sogra.']],
     [[u'carro'], [u'é dificil manter um corola']],
     [[u'russa'], [u'to fazendo roleta russa com as contas esse mes.']],
+    [[u'saco'], [u'coça aqui então.']],
     [[u'datastore'], [u'@bruno_hadlich, me ajuda a criar uma pagina nesse sistema embarcado']],
     [[u'ligacao', u'nestor'], [u'lembrei que tenho que ligar pro Nestor']],
     [[u'vagas'], [u'to conversando com 3 recrutadores', u'@mpdesouza, tem uma vaginha na SUSE?']],
@@ -76,6 +78,15 @@ def send_message_command(message, text, chat_id, com):
         None
     return False
 
+def evolve_command(message, text, chat_id, com):
+    if text == 'barnabot digievolua;':
+        system("cd ~/git/barnabot && cp balde.json balde.json.tmp && git fetch --all && git reset --hard origin/master && mv balde.json.tmp balde.json")
+        msgs = ["Barnabot digievoluiu para Matutoromon", "Matutoromon digievoluiu para War Matutoromon", "Barnabot digievoluiu para tamagotchi"]
+        send_message(msgs[randint(0, len(msgs) - 1)], chat_id, com)
+            system("cd ~/git/barnabot && python3 barnabot.py&")
+        _exit(0)
+    return False
+
 """
 def dieta_bambam(message, chat_id, com):
     global LAST_DIETA_BAMBAM_CALL
@@ -91,6 +102,9 @@ def dieta_bambam(message, chat_id, com):
 def process_msg(message, text, chat_id, group_title, com):
     if (send_message_command(message, text, chat_id, com)):
         #dieta_bambam(message, chat_id, com)):
+        return
+
+    if (evolve_command(message, text, chat_id, com)):
         return
 
     text = text.lower()
